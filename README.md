@@ -2,8 +2,6 @@
 
 A full-stack personal reading tracker, inspired by Goodreads and StoryGraph, wrapped in a cozy forest-green **cottagecore** aesthetic — botanical accents, torn-paper motifs, and a warm, hand-kept-journal feel.
 
-![Status](https://img.shields.io/badge/status-active-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue)
-
 ---
 
 ## ✨ Overview
@@ -131,8 +129,3 @@ Each of `backend/` and `frontend/` has its own `.env.example` — copy it to `.e
 B.Tech CSE (AI Specialization), PSIT Kanpur
 [GitHub](https://github.com/SushmaShreeAsthana)
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
