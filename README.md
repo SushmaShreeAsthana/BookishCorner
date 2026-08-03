@@ -1,58 +1,138 @@
-# Bookish Corner — Cozy Reading Tracker
+# 📖 Bookish Corner
 
-A full-stack, portfolio-grade personal reading tracker (Goodreads/StoryGraph style) with a cozy, forest-green cottagecore aesthetic.
+A full-stack personal reading tracker, inspired by Goodreads and StoryGraph, wrapped in a cozy forest-green **cottagecore** aesthetic — botanical accents, torn-paper motifs, and a warm, hand-kept-journal feel.
 
-## Project Structure
-This is a monorepo containing:
-- **`frontend/`**: Vite + React 18 frontend (Tailwind CSS, Framer Motion, Axios).
-- **`backend/`**: Django + Django REST Framework backend (SQLite in dev, PostgreSQL for production, django-allauth, dj-rest-auth).
+![Status](https://img.shields.io/badge/status-active-brightgreen) ![License](https://img.shields.io/badge/license-MIT-blue)
 
 ---
 
-## Getting Started
+## ✨ Overview
+
+Bookish Corner is a self-hosted reading tracker built to log books, track reading progress, and organize a personal library — designed and built end-to-end as a portfolio project demonstrating full-stack development, cloud deployment, and thoughtful UI/UX design.
+
+**Live demo:** _add deployed link here_
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend**
+- React 18 + Vite
+- Tailwind CSS
+- Framer Motion (animations)
+- Axios
+
+**Backend**
+- Django + Django REST Framework
+- django-allauth / dj-rest-auth (Google OAuth)
+- PostgreSQL (via [Neon](https://neon.tech)) in production, SQLite for local dev
+
+**Infrastructure**
+- Frontend deployed on **Vercel**
+- Backend deployed on **Render**
+- Database hosted on **Neon** (serverless Postgres)
+
+---
+
+## 🚀 Features
+
+- Add, edit, and track books with reading status (want to read / currently reading / finished)
+- Google OAuth login for secure, passwordless auth
+- Personal library with a clean, cottagecore-inspired reading dashboard
+- RESTful API backend, fully decoupled from the frontend
+
+> **Scope note:** This is intentionally CRUD-focused for v1. Vibe-based/semantic search (embeddings) is a planned future addition, not yet implemented.
+
+---
+
+## 📂 Project Structure
+
+This is a monorepo containing:
+
+```
+BookishCorner/
+├── backend/        # Django + DRF REST API
+└── frontend/        # Vite + React 18 client
+```
+
+- **`frontend/`** — Vite + React 18 app (Tailwind CSS, Framer Motion, Axios)
+- **`backend/`** — Django + DRF API (SQLite in dev, PostgreSQL in production, django-allauth, dj-rest-auth)
+
+---
+
+## 🧑‍💻 Getting Started
+
+### Prerequisites
+- Python 3.10+
+- Node.js 18+
+- A PostgreSQL database (or use SQLite locally)
 
 ### Backend Setup (Django)
-1. **Navigate to backend**:
-   ```bash
-   cd backend
-   ```
-2. **Create a virtual environment** and activate it:
-   ```bash
-   python -m venv venv
-   # On Windows:
-   venv\Scripts\activate
-   # On macOS/Linux:
-   source venv/bin/activate
-   ```
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Create a `.env` file** matching the fields in `.env.example`.
-5. **Run migrations**:
-   ```bash
-   python manage.py migrate
-   ```
-6. **Start the development server**:
-   ```bash
-   python manage.py runserver
-   ```
-   The backend will run on `http://127.0.0.1:8000/`.
+
+```bash
+cd backend
+
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate       # macOS/Linux
+venv\Scripts\activate          # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Configure environment variables
+cp .env.example .env           # then fill in the values
+
+# Run migrations
+python manage.py migrate
+
+# Start the dev server
+python manage.py runserver
+```
+
+Backend runs at `http://127.0.0.1:8000/`
+
+### Frontend Setup (React + Vite)
+
+```bash
+cd frontend
+
+# Install dependencies
+npm install
+
+# Configure environment variables
+cp .env.example .env           # then fill in the values
+
+# Start the dev server
+npm run dev
+```
+
+Frontend runs at `http://localhost:5173/`
 
 ---
 
-### Frontend Setup (React + Vite)
-1. **Navigate to frontend**:
-   ```bash
-   cd frontend
-   ```
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-3. **Create a `.env` file** matching the fields in `.env.example`.
-4. **Start the dev server**:
-   ```bash
-   npm run dev
-   ```
-   The frontend will run on `http://localhost:5173/` (or the port shown by Vite).
+## 🔐 Environment Variables
+
+Each of `backend/` and `frontend/` has its own `.env.example` — copy it to `.env` and fill in your own values (database URL, Google OAuth client credentials, API base URL, etc.) before running either app.
+
+---
+
+## 🗺 Roadmap
+
+- [ ] Semantic / "vibe" search over the library using embeddings
+- [ ] Reading stats & yearly wrap-up dashboard
+- [ ] Public shareable profile pages
+
+---
+
+## 👩‍💻 Author
+
+**Sushma Shree Asthana**
+B.Tech CSE (AI Specialization), PSIT Kanpur
+[GitHub](https://github.com/SushmaShreeAsthana)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
