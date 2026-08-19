@@ -4,8 +4,9 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from shelves.models import Shelf
 from books.models import Book
+import requests
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client, OAuth2Error
 from dj_rest_auth.registration.views import SocialLoginView
 
 User = get_user_model()
@@ -53,8 +54,25 @@ class ProfileStatsAPIView(APIView):
         })
 
 
+class GoogleOAuth2AdapterIdToken(GoogleOAuth2Adapter):
+    def complete_login(self, request, app, token, **kwargs):
+        id_token_val = request.data.get('id_token') or token.token
+        
+        # Verify the id_token via Google's tokeninfo API
+        resp = requests.get(f"https://oauth2.googleapis.com/tokeninfo?id_token={id_token_val}")
+        if not resp.ok:
+            raise OAuth2Error("Invalid Google ID Token")
+            
+        idinfo = resp.json()
+        # Verify audience (client ID) matches
+        if idinfo.get("aud") != app.client_id:
+            raise OAuth2Error("Audience mismatch")
+            
+        return self.get_provider().sociallogin_from_response(request, idinfo)
+
+
 class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
+    adapter_class = GoogleOAuth2AdapterIdToken
     client_class = OAuth2Client
     callback_url = 'http://localhost:5173'
 

@@ -12,5 +12,7 @@ cloudinary>=1.33.0
 django-cloudinary-storage>=0.3.0
 PyJWT>=2.8.0
 cryptography>=41.0.0
+gunicorn>=21.2.0
+whitenoise>=6.5.0
 
 
